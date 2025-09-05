@@ -122,8 +122,8 @@ class Product( models.Model ) :
     name = models.CharField( max_length = 255 ) 
     manufacturing_lab = models.ForeignKey( Lab , on_delete = models.CASCADE , related_name = 'product_lab',blank=True ,null=True ) 
     type = models.CharField( choices = Type.choices , max_length = 10 ) 
-    man_price = models.DecimalField( max_digits = 12 , decimal_places = 4, blank=True ,null=True) 
-    sell_price = models.DecimalField( max_digits = 12 , decimal_places = 4 ,blank=True ,null=True)  
+    man_price = models.DecimalField( max_digits = 12 , decimal_places = 1, blank=True ,null=True) 
+    sell_price = models.DecimalField( max_digits = 12 , decimal_places = 1 ,blank=True ,null=True)  
     code = models.CharField( max_length = 30 , blank = True , unique = True )
     
     def save( self , *args , **kwargs ) :

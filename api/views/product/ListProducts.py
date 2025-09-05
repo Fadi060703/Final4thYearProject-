@@ -9,7 +9,7 @@ class ListCreateProduct (APIView):
     def get(self, request : Request ):
         page = request.query_params.get( 'page' ) 
         products = Product.objects.all()
-        serializer =ProductMiniSerializer(products,many = True)
+        serializer =ProductSerializer(products,many = True)
         data = { 'data' : serializer.data }
         return Response(data = data,status=status.HTTP_200_OK)
     def post(self, request):
