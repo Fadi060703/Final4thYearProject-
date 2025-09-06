@@ -13,6 +13,9 @@ from api.views.user.ListUsers import ListUsers
 from api.views.user.UserDetails import UserDetails 
 from api.views.stock.ListStock import ListProductStock 
 from api.views.order.ListOrders import ListCreateOrder 
+from api.views.order.OrderDetails import OrderDetailView 
+from api.views.reports.ListOutOfStock import ListOutOfStock 
+from api.views.reports.ListTotalSales import ListTotalFund 
 
 urlpatterns = [
     path( 'register' , UserRegistrationView.as_view() , name = 'x' ) , 
@@ -28,5 +31,8 @@ urlpatterns = [
     path( 'prods' , ListCreateProduct.as_view() , name = 'prod' ) , 
     path( 'prods/<int:pk>' , ProductDetailUpdateDelete.as_view() , name = 'prodD' ) , 
     path( 'stock' , ListProductStock.as_view() , name= 'stock-list' ) ,
-    path( 'order' , ListCreateOrder.as_view() , name ='create_order' ) 
+    path( 'order' , ListCreateOrder.as_view() , name ='create_order' ) ,
+    path( 'order/<int:pk>' , OrderDetailView.as_view() , name = 'order-detail' ) ,
+    path( 'reports/outofstock' , ListOutOfStock.as_view() , name = 'out_of_stock' ) ,
+    path( 'reports/totalsales' , ListTotalFund.as_view() , name = 'total_fund' ) 
 ]

@@ -9,6 +9,9 @@ from api.json.order.ListOrderSerializer import ListOrderSerializer
 class ListCreateOrder( APIView ) :
     def get( self , request : Request ) :
         data = Order.objects.all() 
+        pharm = request.query_params.get( 'name' ) 
+        if pharm :
+            data = data.filter( client = pharm ) 
         serializer = ListOrderSerializer( data , many = True ) 
         return Response( data = serializer.data , status = status.HTTP_200_OK ) 
     def post( self , request : Request ) :

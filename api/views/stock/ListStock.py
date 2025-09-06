@@ -6,8 +6,14 @@ from api.json.stock.StockSerializer import StockSerializerMain
 from api.json.stock.ShipmentSerializer import ShipmentSerializer
 from ...models import ProductStock 
 class ListProductStock(APIView):
-    def get(self, request):
+    def get(self, request : Request ):
+        lab_filter = request.query_params.get( 'lab_name' ) 
+        medname = request.query_params.get( 'name' )
         product_stock = ProductStock.objects.all()
+        if lab_filter :
+            product_stock = product_stock.objects.filter( manufacturing_lab = lab_filter ) 
+        if medname : 
+            product_stock = product_stock.objects.filter( name__icontains = medname )
         serializer = StockSerializerMain(product_stock, many = True)
         return Response(serializer.data,status=status.HTTP_200_OK)
     

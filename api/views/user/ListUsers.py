@@ -10,6 +10,9 @@ class ListUsers( APIView ) :
 
     def get( self , request : Request ) :
         data = BaseUser.objects.all() 
+        firstName = request.query_params.get( 'firstname' ) 
+        if firstName :
+            data = data.filter( name__icontains = firstName )
         serializer = self.serializer_class( data , many = True ) 
         data = { 'data' : serializer.data } 
         return Response( data = data , status = status.HTTP_200_OK )
