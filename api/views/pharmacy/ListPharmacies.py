@@ -15,6 +15,8 @@ class ListPharmView( APIView ) :
         data = Client.objects.all()  
         if name :
             data = data.filter( name__icontains = name ) 
+        if city :
+            data = data.filter( city = city ) 
         serializer = self.serializer_class( data , many = True )
         data = { 'data' : serializer.data } 
         return Response( data = data , status = status.HTTP_200_OK ) 
