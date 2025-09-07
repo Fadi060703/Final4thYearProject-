@@ -8,6 +8,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data.update({
             'user_id': self.user.id,
             'email': self.user.email,
+            'role' : self.user.role ,
             'is_staff': self.user.is_staff,
             # Add any other user fields you need
         })
